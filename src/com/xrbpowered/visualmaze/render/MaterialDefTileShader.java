@@ -8,12 +8,13 @@ import java.awt.Color;
 import org.joml.Vector3f;
 
 import com.xrbpowered.gl.res.shader.ActorShader;
+import com.xrbpowered.gl.res.shader.InstanceInfo;
 import com.xrbpowered.gl.res.shader.VertexInfo;
 
 public class MaterialDefTileShader extends ActorShader {
 
 	public static VertexInfo vertexInfo = new VertexInfo().addAttrib("in_Position", 3).addAttrib("in_Normal", 3).addAttrib("in_Material", 1);
-	public static VertexInfo instInfo = new VertexInfo(vertexInfo).addAttrib("ins_Position", 2).addAttrib("ins_RotationY", 1);
+	public static InstanceInfo instInfo = new InstanceInfo(vertexInfo).addAttrib("ins_Position", 2).addAttrib("ins_RotationY", 1);
 	
 	public MaterialDefTileShader() {
 		super(vertexInfo, "mtile_v.glsl", "mtile_f.glsl");
@@ -62,8 +63,8 @@ public class MaterialDefTileShader extends ActorShader {
 	}
 
 	@Override
-	protected int bindAttribLocations() {
-		return instInfo.bindAttribLocations(this.pId, super.bindAttribLocations());
+	protected void bindAttribLocations() {
+		instInfo.bindAttribLocations(this.pId);
 	}
 	
 }
