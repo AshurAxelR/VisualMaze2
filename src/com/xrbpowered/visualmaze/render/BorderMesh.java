@@ -55,9 +55,9 @@ public class BorderMesh {
 		for(i=0; i<=segm; i++) {
 			for(j=0; j<=segm; j++) {
 				Vertex vertex = mb.getVertex(index);
-				v.x = -d+i*d - 9;//template.renderer.tileSize/2f; // FIXME why 9???
+				v.x = -d+i*d - template.renderer.tileSize/2f;
 				v.y = this.y;
-				v.z = -d+j*d - 9;//template.renderer.tileSize/2f;
+				v.z = -d+j*d - template.renderer.tileSize/2f;
 				vertex.setPosition(v);
 				vertex.setNormal(0, 1, 0);
 				vertex.set(materialAttrib, 0, materialId);

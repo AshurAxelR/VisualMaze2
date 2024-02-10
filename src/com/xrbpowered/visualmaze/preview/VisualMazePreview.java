@@ -12,7 +12,9 @@ import com.xrbpowered.visualmaze.Grid;
 import com.xrbpowered.visualmaze.Tile;
 import com.xrbpowered.visualmaze.VisualMaze;
 import com.xrbpowered.zoomui.GraphAssist;
+import com.xrbpowered.zoomui.InputInfo;
 import com.xrbpowered.zoomui.KeyInputHandler;
+import com.xrbpowered.zoomui.MouseInfo;
 import com.xrbpowered.zoomui.UIContainer;
 import com.xrbpowered.zoomui.UIElement;
 import com.xrbpowered.zoomui.base.UILayersContainer;
@@ -30,7 +32,7 @@ public class VisualMazePreview extends UIElement {
 	public VisualMazePreview(UIContainer parent, ImageTemplate template) {
 		super(new UIPanView(parent) {
 			@Override
-			protected void paintSelf(GraphAssist g) {
+			protected void paintBackground(GraphAssist g) {
 				g.fill(this, new Color(0xeeeeee));
 			}
 		});
@@ -84,20 +86,20 @@ public class VisualMazePreview extends UIElement {
 	}
 	
 	@Override
-	public boolean onMouseDown(float x, float y, Button button, int mods) {
-		if(button==Button.left) {
+	public boolean onMouseDown(float x, float y, MouseInfo mouse) {
+		if(mouse.eventButton==MouseInfo.LEFT) {
 			generate();
 			repaint();
 			return true;
 		}
 		else
-			return super.onMouseDown(x, y, button, mods);
+			return super.onMouseDown(x, y, mouse);
 	}
 	
 	private static class HotkeyPane extends UILayersContainer implements KeyInputHandler {
 		public HotkeyPane(UIContainer parent) {
 			super(parent);
-			getBase().setFocus(this);
+			getRoot().setFocus(this);
 		}
 		@Override
 		public void onFocusGained() {
@@ -106,7 +108,7 @@ public class VisualMazePreview extends UIElement {
 		public void onFocusLost() {
 		}
 		@Override
-		public boolean onKeyPressed(char c, int code, int mods) {
+		public boolean onKeyPressed(char c, int code, InputInfo input) {
 			switch(code) {
 				case KeyEvent.VK_G:
 					drawGrid = !drawGrid;
