@@ -163,7 +163,7 @@ public class RenderTemplate extends Template<RenderTemplate.RotatedComponent> {
 				if(filename!=null) {
 					try {
 						Scanner in = new Scanner(new File(rootDir, filename));
-						builders = new TileMeshLoader(materialAttrib, materials.materialNames, tileSkip, scale).loadBuilders(in, shader.info, null);
+						builders = new TileMeshLoader(materialAttrib, materials.materialNames, tileSkip, scale).loadBuilders(in, shader.info);
 						compMap = new HashMap<>();
 						in.close();
 					}

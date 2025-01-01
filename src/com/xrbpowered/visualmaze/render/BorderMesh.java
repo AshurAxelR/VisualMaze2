@@ -48,7 +48,7 @@ public class BorderMesh {
 		VertexInfo.Attribute materialAttrib = shader.info.get("in_Material");
 		float d = template.gridSize * template.renderer.tileSize;
 		
-		FastMeshBuilder mb = new FastMeshBuilder(shader.info, null, (segm+1) * (segm+1), (segm * segm - 1) * 6);
+		FastMeshBuilder mb = new FastMeshBuilder(shader.info, (segm+1) * (segm+1), (segm * segm - 1) * 6);
 		
 		Vector3f v = new Vector3f();
 		int index = 0;
